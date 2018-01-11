@@ -1,0 +1,6 @@
+libft/*.o
+libft/*.a
+minilibx_macos/*.a
+*.o
+fractol
+*.tgz
