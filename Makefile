@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/01/11 15:23:13 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/11 16:44:54 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ LIBFTD		=	libft
 MLXD		=	minilibx_macos
 
 SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
-				$(SRCD)/env.c $(SRCD)/compute.c $(SRCD)/binds.c
+				$(SRCD)/env.c $(SRCD)/compute.c $(SRCD)/binds.c \
+				$(SRCD)/ft_complex.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
 CFLAGS		+=	-I$(INCD) -I$(LIBFTD)/includes -I$(MLXD) -O3 -g

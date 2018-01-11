@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:44:18 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/11 15:23:33 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/11 15:27:38 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct	s_pixel {
 }				t_pixel;
 
 typedef struct	s_env {
-	int			a;
+	double		**map;
 }				t_env;
 
 /*

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/11 15:14:13 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/11 15:35:17 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void			env_destroy(t_data *data);
 int				manage_key_down(int keycode, void *param);
 int				manage_key_up(int keycode, void *param);
 int				manage_mouse(int keycode, int x, int y, void *param);
-int				compute_img(t_env *env);
+void			draw_img(t_data *data);
+void			clean_maps(t_data *data);
 
 #endif
