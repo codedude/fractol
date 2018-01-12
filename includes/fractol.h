@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/11 15:35:17 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/12 17:11:20 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,25 @@
 # define FRACTOL_H
 
 # include "ft_mlx.h"
+# include "ft_tpool.h"
 
 # define WIDTH		1024
 # define HEIGHT		768
 # define TITLE		"FRACTOL DX4000"
 
+# define THREADS	2
+# define TASKS		8
+
 typedef struct	s_data {
 	t_env		env;
 	t_mlx		mlx;
 }				t_data;
+
+typedef struct	s_algo {
+	int			start;
+	int			len;
+	t_data		*data;
+}				t_algo;
 
 int				env_init(t_env *env, int width, int height);
 void			env_destroy(t_data *data);

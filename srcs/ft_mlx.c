@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:43:44 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/08 11:01:07 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/12 16:43:17 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		ft_mlx_win(t_mlx *mlx, int width, int height, char *title)
 	mlx->win[n].height = height;
 	mlx->win[n].title = ft_strdup(title);
 	mlx->win[n].img__ = mlx_new_image(mlx->mlx, width, height);
-	mlx->win[n].img = mlx_get_data_addr(mlx->win[n].img__,
+	mlx->win[n].img = (t_color *)mlx_get_data_addr(mlx->win[n].img__,
 		&depth, &size_line, &endian);
 	return (n);
 }

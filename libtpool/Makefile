@@ -6,58 +6,49 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/01/12 16:26:38 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/12 13:52:21 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	fractol
+NAME		=	libtpool.a
 CC			=	gcc
 
 SRCD		=	srcs
 INCD		=	includes
-LIBFTD		=	libft
-LIBTPOOLD	=	libtpool
-MLXD		=	minilibx_macos
+LIBFTD		=	../libft
 
-SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
-				$(SRCD)/env.c $(SRCD)/compute.c $(SRCD)/binds.c \
-				$(SRCD)/ft_complex.c
+SRCS		=	$(SRCD)/tp_queue.c $(SRCD)/tp_thread.c \
+				$(SRCD)/tp_pool.c $(SRCD)/tp_pool2.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-I$(INCD)  -O3 -g \
-				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(MLXD)
-LDFLAGS		+=	-Wextra -Wall -ansi -pedantic -Wno-unused-result
-LDLIBS		+=	-L$(LIBFTD) -lft -L$(LIBTPOOLD) -ltpool -L$(MLXD) -lmlx -lm \
-				-framework OpenGL -framework AppKit
+CFLAGS		+=	-I$(LIBFTD)/includes -I$(INCD) -O2
+LDFLAGS		+=	-Wall -Wextra -Werror -ansi -pedantic -Wno-unused-result
+LDLIBS		+=
 
-.PHONY: clean fclean re
+.PHONY: clean fclean re showlib
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(LIBFTD)
-	make -C $(LIBTPOOLD)
-	make -C $(MLXD)
-	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+	@ar rs $@ $(OBJS)
+	@echo "libtpool - compiled"
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ -c $< $(LDLIBS)
+
+showlib: $(NAME)
+	@ar -t $(NAME)
 
 clean:
-	make -C $(LIBFTD) clean
-	make -C $(LIBTPOOLD) clean
-	make -C $(MLXD) clean
-	@rm -vf $(OBJS)
+	@rm -f $(OBJS)
+	@echo "libtpool - objects cleaned"
 
 fclean: clean
-	make -C $(LIBFTD) __fclean
-	make -C $(LIBTPOOLD) __fclean
-	@rm -vf $(MLXD)/libmlx.a
-	@rm -vf $(NAME)
+	@rm -f $(NAME)
+	@echo "libtpool - lib cleaned"
+
+__fclean:
+	@rm -f $(NAME)
+	@echo "libtpool - lib cleaned"
 
 re: fclean all
-
-rer:
-	@rm -f $(NAME)
-	@rm -f $(OBJS)
-	make $(NAME)

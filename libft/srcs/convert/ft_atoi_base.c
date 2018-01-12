@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 21:45:48 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/08 13:10:28 by vparis           ###   ########.fr       */
+/*   Updated: 2017/11/08 18:55:59 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int			ft_atoi_base(char const *nptr, char const *base)
 	size = check_base(base);
 	sign = check_str(nptr, base, &i);
 	if (sign == 0 || size < 2)
-		return (-1);
+		return (0);
 	n = 0;
 	while (nptr[i] != 0)
 	{

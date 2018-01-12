@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:44:18 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/11 15:27:38 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/12 16:43:05 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_MLX_H
 
 # include "libft.h"
+# include "ft_tpool.h"
 # include "mlx.h"
 # include "ft_mlx_key.h"
 
@@ -36,7 +37,7 @@ typedef int		t_color;
 
 typedef struct	s_win {
 	void		*win;
-	char		*img;
+	t_color		*img;
 	void		*img__;
 	int			width;
 	int			height;
@@ -56,6 +57,7 @@ typedef struct	s_pixel {
 
 typedef struct	s_env {
 	double		**map;
+	t_tpool		*tp;
 }				t_env;
 
 /*

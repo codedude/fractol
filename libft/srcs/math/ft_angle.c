@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   angle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/18 00:26:13 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/12 17:10:49 by vparis           ###   ########.fr       */
+/*   Created: 2018/01/12 13:48:10 by vparis            #+#    #+#             */
+/*   Updated: 2018/01/12 13:48:35 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
-#include "ft_mlx.h"
-#include "fractol.h"
-#include "ft_tpool.h"
+#include <math.h>
+#include "ft_type.h"
+#include "ft_math.h"
 
-int				env_init(t_env *env, int width, int height)
+t_f64		deg_to_rad(t_f64 x)
 {
-	if ((env->tp = tp_create(THREADS, TP_ON_START)) == NULL)
-		return (ERROR);
-	return (SUCCESS);
+	return (x * DEG_TO_RAD);
 }
 
-void			env_destroy(t_data *data)
+t_f64		rad_to_deg(t_f64 x)
 {
-	tp_destroy(&(data->env.tp));
-	ft_mlx_destroy(&(data->mlx), MAIN_WIN);
-	ft_mlx_exit();
+	return (x * RAD_TO_DEG);
+}
+
+t_f64		ft_cos(t_f64 x)
+{
+	return (cos(deg_to_rad(x)));
+}
+
+t_f64		ft_sin(t_f64 x)
+{
+	return (sin(deg_to_rad(x)));
 }

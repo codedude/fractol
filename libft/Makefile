@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/01/11 12:23:40 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/12 13:53:08 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ LIBFT_SRCS	+= $(STRINGD)/ft_strncpy.c $(STRINGD)/ft_strsub.c \
 			$(STRINGD)/ft_strrev.c $(STRINGD)/ft_strdup.c \
 			$(STRINGD)/ft_strnew_fast.c $(STRINGD)/ft_strjoin.c \
 			$(STRINGD)/ft_strcmp.c $(STRINGD)/ft_strrchr.c \
-			$(STRINGD)/ft_strcpy.c $(STRINGD)/ft_strsplit_free.c \
+			$(STRINGD)/ft_strcpy.c $(STRINGD)/ft_strsplit_free.c\
 			$(STRINGD)/ft_strdel.c $(STRINGD)/ft_strtrim.c \
 			$(STRINGD)/ft_strnew.c $(STRINGD)/ft_strncmp.c
 LIBFT_SRCS	+= $(MEMORYD)/ft_memccpy_fast.c $(MEMORYD)/ft_memset.c \
@@ -58,7 +58,7 @@ LIBFT_SRCS	+= $(MEMORYD)/ft_memccpy_fast.c $(MEMORYD)/ft_memset.c \
 LIBFT_SRCS	+= $(MATHD)/ft_sqrt.c $(MATHD)/ft_find_next_prime.c \
 			$(MATHD)/ft_isprime.c $(MATHD)/ft_max3.c \
 			$(MATHD)/ft_abs.c $(MATHD)/ft_min.c $(MATHD)/ft_min3.c \
-			$(MATHD)/ft_fibonacci.c $(MATHD)/ft_max.c \
+			$(MATHD)/ft_fibonacci.c $(MATHD)/ft_max.c $(MATHD)/ft_angle.c\
 			$(MATHD)/ft_power.c $(MATHD)/ft_factorial.c
 LIBFT_SRCS	+= $(CONVERTD)/ft_atoi_base.c \
 			$(CONVERTD)/ft_itoa.c $(CONVERTD)/ft_atoi.c
@@ -78,7 +78,7 @@ LIBFT_SRCS	+= $(INPUTD)/ft_gnl.c
 
 OBJS		= $(patsubst %.c, %.o, $(LIBFT_SRCS))
 LDFLAGS		+= -Werror -Wall -Wextra -ansi -pedantic -Wno-unused-result
-CFLAGS		+= -I$(INCD) -O3
+CFLAGS		+= -I$(INCD) -O2
 
 .PHONY: clean fclean re showlib
 
@@ -86,7 +86,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rs $@ $(OBJS)
-	@ranlib $@
 	@echo "libft - compiled"
 
 %.o: %.c
