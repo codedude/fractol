@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:47:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/15 17:12:20 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/15 17:58:50 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,19 @@ void			init_color(t_color cs[64], int size)
 		cs[i] = ft_mlx_getcolor(10 + i * 3, 10 + i * 3, 10 - i * 3);
 		i++;
 	}
+}
+
+void			zoom(t_env *env, int zoom, int x, int y)
+{
+	double	pos_x;
+	double	pos_y;
+	int		w_min[2];
+
+	pos_x = (double)x * (env->area.x2 - env->area.x1) / (double)env->width;
+	pos_y = (double)y * (env->area.y2 - env->area.y1) / (double)env->height;
+	env->area.x1 = pos_x;
+	env->area.y1 = pos_y;
+	env->area.max += (zoom > 0) ? 2 : -2;
 }
 
 static int		draw_mandel(void *data)
@@ -71,7 +84,7 @@ static int		draw_mandel(void *data)
 			}
 			if (iter != area->max)
 				algo->data->mlx.win[MAIN_WIN].img[row * WIDTH + col]
-					= ft_mlx_getcolor(0, 0, iter * 255 / area->max);
+					= C_WHITE;
 			col++;
 		}
 		row++;

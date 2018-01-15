@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 09:53:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/15 16:41:22 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/15 17:31:05 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ int			manage_mouse(int keycode, int x, int y, void *param)
 {
 	t_data	*data;
 
-	(void)keycode;
-	(void)x;
-	(void)y;
 	data = (t_data *)param;
+	if (keycode == M_DOWN)
+		zoom(&(data->env), 1, x, y);
+	else if (keycode == M_UP)
+		zoom(&(data->env), -1, x, y);
 	return (1);
 }

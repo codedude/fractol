@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/15 17:01:09 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/15 17:35:01 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define THREADS	4
 # define TASKS		32
 
+# define ZOOM		0.1
 # define FRACTAL_MANDEL	1
 # define FRACTAL_JULIA	2
 
@@ -68,5 +69,6 @@ int				manage_mouse(int keycode, int x, int y, void *param);
 
 void			draw_img(t_data *data);
 void			clean_maps(t_data *data);
+void			zoom(t_env *env, int zoom, int x, int y);
 
 #endif
