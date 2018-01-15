@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/12 17:08:02 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/15 17:01:57 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 #include "ft_mlx.h"
 #include "fractol.h"
 
-static int x = 0;
-static int y = 0;
 static int	loop(void *param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
 	clean_maps(data);
+	check_key(&(data->env));
 	draw_img(data);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win[MAIN_WIN].win,
-		data->mlx.win[MAIN_WIN].img__, x++, y++);
+		data->mlx.win[MAIN_WIN].img__, 0, 0);
+	ft_mlx_fps(data->env.show_fps);
 	return (1);
 }
 
@@ -45,20 +45,27 @@ static void	set_hook(t_data *data)
 int			main(int argc, char **argv)
 {
 	t_data	data;
-
-	/*
+	int		fractal;
+/*
 	char	buff[3];
 	fgets(buff, 2, stdin);
-	*/
+*/
 	if (argc != 2)
 	{
-		ft_putstr("fractol : ./fractol MAP\n");
+		ft_putstr("fractol : ./fractol FRACTAL\n");
 		return (EXIT_SUCCESS);
 	}
-	if (env_init(&(data.env), WIDTH, HEIGHT) == ERROR)
+	fractal = ft_atoi(argv[1]);
+	if (fractal < 1 || fractal > 3)
+	{
+		ft_putstr("fractal number between 1 and 3\n");
+		return (EXIT_SUCCESS);
+	}
+	if (env_init(&(data.env), fractal, WIDTH, HEIGHT) == ERROR)
 		return (EXIT_FAILURE);
 	ft_mlx_init(&(data.mlx));
-	if (ft_mlx_win(&(data.mlx), WIDTH, HEIGHT, TITLE) == ERROR)
+	if (ft_mlx_win(&(data.mlx), data.env.width, data.env.height, TITLE)
+		== ERROR)
 		exit(EXIT_FAILURE);
 	set_hook(&data);
 	mlx_loop(&(data.mlx));

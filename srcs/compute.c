@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:47:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/12 17:07:25 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/15 17:12:20 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 #include "fractol.h"
 #include "ft_mlx.h"
 #include "ft_math.h"
+#include "ft_complex.h"
 
 void			clean_maps(t_data *data)
 {
 	ft_bzero((void *)data->mlx.win[MAIN_WIN].img, 4 * WIDTH * HEIGHT);
 }
 
-void			init_color(t_color cs[200], int size)
+void			init_color(t_color cs[64], int size)
 {
 	int	i;
 
@@ -35,69 +36,75 @@ void			init_color(t_color cs[200], int size)
 	}
 }
 
-static int		draw_fun(void *data)
+static int		draw_mandel(void *data)
 {
-	int		row;
-	int		end;
-	int		col;
 	int		iter;
-	int		max;
-	double	c_re;
-	double	c_im;
-	double	x;
-	double	y;
-	double	x_new;
-	t_color	*tmp;
-	t_color	cs[64];
+	int		col;
+	int		row;
+	double	py;
+	t_cplex	z;
+	t_cplex	c;
+	double	zr;
 	t_algo	*algo;
-	t_data	*datas;
+	t_area	*area;
 
 	algo = (t_algo *)data;
-	datas = algo->data;
-	init_color(cs, 64);
-	max = 64;
+	area = &(algo->data->env.area);
 	row = algo->start;
-	end = row + algo->len;
-	while (row < end)
+	while (row < algo->end)
 	{
 		col = 0;
-		while (col < WIDTH)
+		py = row / area->zoom + area->y1;
+		while (col < area->size[0])
 		{
-			c_re = (col - WIDTH / 2.) * 4. / WIDTH;
-			c_im = (row - HEIGHT / 2.) * 4. / WIDTH;
-			x = 0;
-			y = 0;
+			ft_cplex_set(&c, col / area->zoom + area->x1, py);
+			ft_cplex_set(&z, 0., 0.);
 			iter = 0;
-			while (x*x+y*y <= 4 && iter < max) {
-				x_new = x*x - y*y + c_re;
-				y = 2*x*y + c_im;
-				x = x_new;
+			while (ft_cplex_mod_f(&z) < 4. && iter < area->max)
+			{
+				zr = z.r;
+				ft_cplex_set(&z,
+					z.r * z.r - z.i * z.i + c.r,
+					2 * z.i * zr + c.i
+				);
 				iter++;
 			}
-			if (iter < max)
-			{
-				datas->mlx.win[MAIN_WIN].img[row * WIDTH + col] = cs[iter];
-			}
+			if (iter != area->max)
+				algo->data->mlx.win[MAIN_WIN].img[row * WIDTH + col]
+					= ft_mlx_getcolor(0, 0, iter * 255 / area->max);
 			col++;
 		}
 		row++;
 	}
 	return (SUCCESS);
 }
+
+static int		draw_julia(void *data)
+{
+	(void)data;
+	return (SUCCESS);
+}
+
 void			draw_img(t_data *data)
 {
-	t_algo	pack[16];
-	int		n;
+	t_algo	pack[TASKS];
+	int		n_div;
+	int		n_mod;
 	int		i;
 
-	n = HEIGHT / TASKS;
 	i = 0;
+	n_div = data->env.area.size[1] / TASKS;
+	n_mod = data->env.area.size[1] % TASKS;
 	while (i < TASKS)
 	{
 		pack[i].data = data;
-		pack[i].start = i * n;
-		pack[i].len = i < TASKS - 1 ? n : n + HEIGHT % TASKS;
-		tp_add_task(data->env.tp, &draw_fun, &pack[i]);
+		pack[i].start = i * n_div;
+		pack[i].end = i < TASKS - 1 ? n_div : n_div + n_mod;
+		pack[i].end += pack[i].start;
+		if (data->env.fractal == FRACTAL_MANDEL)
+			tp_add_task(data->env.tp, &draw_mandel, &pack[i]);
+		else if (data->env.fractal == FRACTAL_JULIA)
+			tp_add_task(data->env.tp, &draw_julia, &pack[i]);
 		i++;
 	}
 	tp_wait_for_queue(data->env.tp);

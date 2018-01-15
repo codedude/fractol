@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/01/12 13:53:08 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/15 10:27:20 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,8 +77,8 @@ LIBFT_SRCS	+= $(LISTD)/ft_lstnew.c $(LISTD)/ft_lstdelone.c \
 LIBFT_SRCS	+= $(INPUTD)/ft_gnl.c
 
 OBJS		= $(patsubst %.c, %.o, $(LIBFT_SRCS))
-LDFLAGS		+= -Werror -Wall -Wextra -ansi -pedantic -Wno-unused-result
-CFLAGS		+= -I$(INCD) -O2
+LDFLAGS		+= -Werror -Wall -Wextra -std=c11 -pedantic -Wno-unused-result
+CFLAGS		+= -I$(INCD) -O3
 
 .PHONY: clean fclean re showlib
 

@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/01/12 16:26:38 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/15 10:27:57 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
 CFLAGS		+=	-I$(INCD)  -O3 -g \
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(MLXD)
-LDFLAGS		+=	-Wextra -Wall -ansi -pedantic -Wno-unused-result
+LDFLAGS		+=	-Wextra -Wall -std=c11 -pedantic -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -L$(LIBTPOOLD) -ltpool -L$(MLXD) -lmlx -lm \
 				-framework OpenGL -framework AppKit
 

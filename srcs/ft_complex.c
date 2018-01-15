@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:45:09 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/11 16:48:28 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/15 15:13:44 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,9 @@ void			ft_cplex_set(t_cplex *cplex, double r, double i)
 double			ft_cplex_mod(t_cplex *cplex)
 {
 	return (sqrt(cplex->r * cplex->r + cplex->i * cplex->i));
+}
+
+double			ft_cplex_mod_f(t_cplex *cplex)
+{
+	return (cplex->r * cplex->r + cplex->i * cplex->i);
 }
