@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 00:26:13 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/15 17:18:18 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/16 15:55:56 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,42 @@
 #include "fractol.h"
 #include "ft_tpool.h"
 
+void			init_color(t_color cs[64], int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		cs[i] = ft_mlx_getcolor(10 + i * 3, 10 + i * 3, 250 - i * 3);
+		i++;
+	}
+}
+
 void	mandel_init(t_area *area)
 {
-	int	w_min[2];
-
-	area->max = 128;
+	area->max = 256;
 	area->x1 = -2.1;
 	area->y1 = -1.2;
 	area->x2 = 0.6;
 	area->y2 = 1.2;
-	w_min[0] = WIDTH / (area->x2 - area->x1);
-	w_min[1] = HEIGHT / (area->y2 - area->y1);
-	area->zoom = ft_min(w_min[0], w_min[1]);
-	area->size[0] = (area->x2 - area->x1) * area->zoom;
-	area->size[1] = (area->y2 - area->y1) * area->zoom;
+	area->zoom[0] = WIDTH / (area->x2 - area->x1);
+	area->zoom[1] = HEIGHT / (area->y2 - area->y1);
+	area->size[0] = WIDTH;
+	area->size[1] = HEIGHT;
 }
 
 void	julia_init(t_area *area)
 {
-	int	w_min[2];
-
-	area->max = 128;
-	area->x1 = -1;
-	area->y1 = -1.2;
-	area->x2 = 1;
-	area->y2 = 1.2;
-	w_min[0] = WIDTH / (area->x2 - area->x1);
-	w_min[1] = HEIGHT / (area->y2 - area->y1);
-	area->zoom = ft_min(w_min[0], w_min[1]);
-	area->size[0] = (area->x2 - area->x1) * area->zoom;
-	area->size[1] = (area->y2 - area->y1) * area->zoom;
+	area->max = 75;
+	area->x1 = -1.5;
+	area->y1 = -1.5;
+	area->x2 = 1.5;
+	area->y2 = 1.5;
+	area->zoom[0] = WIDTH / (area->x2 - area->x1);
+	area->zoom[1] = HEIGHT / (area->y2 - area->y1);
+	area->size[0] = WIDTH;
+	area->size[1] = HEIGHT;
 }
 
 int		env_init(t_env *env, int fractal, int width, int height)
@@ -58,6 +64,7 @@ int		env_init(t_env *env, int fractal, int width, int height)
 	env->fractal = fractal;
 	env->width = width;
 	env->height = height;
+	init_color(env->cs, 64);
 	if (fractal == FRACTAL_MANDEL)
 		mandel_init(&(env->area));
 	else if (fractal == FRACTAL_JULIA)

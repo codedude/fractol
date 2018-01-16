@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/15 17:35:01 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/16 15:59:03 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@
 # include "ft_mlx.h"
 # include "ft_tpool.h"
 
-# define WIDTH		800
+# define WIDTH		600
 # define HEIGHT		600
 # define TITLE		"FRACTOL DX4000"
 
 # define THREADS	4
 # define TASKS		32
 
-# define ZOOM		0.1
+# define ZOOM		0.2
 # define FRACTAL_MANDEL	1
 # define FRACTAL_JULIA	2
 
 typedef struct	s_area {
-	double		x1;
-	double		y1;
-	double		x2;
-	double		y2;
-	double		zoom;
+	t_f64		x1;
+	t_f64		y1;
+	t_f64		x2;
+	t_f64		y2;
+	t_f64		zoom[2];
 	int			max;
 	int			size[2];
 }				t_area;
@@ -45,6 +45,7 @@ typedef struct	s_env {
 	int			fractal;
 	int			width;
 	int			height;
+	t_color		cs[64];
 }				t_env;
 
 typedef struct	s_data {

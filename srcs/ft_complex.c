@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:45:09 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/15 15:13:44 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/16 14:26:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <math.h>
 #include "ft_complex.h"
 
-t_cplex			*ft_cplex_new(double r, double i)
+t_cplex			*ft_cplex_new(t_f64 r, t_f64 i)
 {
 	t_cplex	*tmp;
 
@@ -30,18 +30,18 @@ void			ft_cplex_del(t_cplex *cplex)
 	free(cplex);
 }
 
-void			ft_cplex_set(t_cplex *cplex, double r, double i)
+void			ft_cplex_set(t_cplex *cplex, t_f64 r, t_f64 i)
 {
 	cplex->r = r;
 	cplex->i = i;
 }
 
-double			ft_cplex_mod(t_cplex *cplex)
+t_f64			ft_cplex_mod(t_cplex *cplex)
 {
 	return (sqrt(cplex->r * cplex->r + cplex->i * cplex->i));
 }
 
-double			ft_cplex_mod_f(t_cplex *cplex)
+t_f64			ft_cplex_mod_f(double r, double i)
 {
-	return (cplex->r * cplex->r + cplex->i * cplex->i);
+	return (r * r + i * i);
 }

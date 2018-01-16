@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:47:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/15 17:58:50 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/16 16:17:48 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,58 @@ void			clean_maps(t_data *data)
 	ft_bzero((void *)data->mlx.win[MAIN_WIN].img, 4 * WIDTH * HEIGHT);
 }
 
-void			init_color(t_color cs[64], int size)
+t_f64			pix_to_cplex_x(t_area *area, int x)
 {
-	int	i;
+	return (area->x1 + (t_f64)x / area->zoom[0]);
+}
 
-	i = 0;
-	while (i < size)
-	{
-		cs[i] = ft_mlx_getcolor(10 + i * 3, 10 + i * 3, 10 - i * 3);
-		i++;
-	}
+t_f64			pix_to_cplex_y(t_area *area, int y)
+{
+	return (area->y1 + ((t_f64)y * ((t_f64)HEIGHT / (t_f64)WIDTH))
+		/ area->zoom[1]);
 }
 
 void			zoom(t_env *env, int zoom, int x, int y)
 {
-	double	pos_x;
-	double	pos_y;
-	int		w_min[2];
+	t_f64	pos_x;
+	t_f64	pos_y;
 
-	pos_x = (double)x * (env->area.x2 - env->area.x1) / (double)env->width;
-	pos_y = (double)y * (env->area.y2 - env->area.y1) / (double)env->height;
-	env->area.x1 = pos_x;
-	env->area.y1 = pos_y;
-	env->area.max += (zoom > 0) ? 2 : -2;
+	pos_x = pix_to_cplex_x(&(env->area), x);
+	pos_y = pix_to_cplex_y(&(env->area), y);
+	/*printf("Clic(%d, %d) => %lf, %lf\n", x, y, pos_x, pos_y);*/
+	if (zoom == 1)
+	{
+		env->area.x1 = pos_x - ZOOM * (env->area.x2 - env->area.x1);
+		env->area.x2 = pos_x + ZOOM * (env->area.x2 - env->area.x1);
+		env->area.y1 = pos_y - ZOOM * (env->area.y2 - env->area.y1);
+		env->area.y2 = pos_y + ZOOM * (env->area.y2 - env->area.y1);
+	}
+	else
+	{
+		env->area.x1 = pos_x - (1. + ZOOM) * (env->area.x2 - env->area.x1);
+		env->area.x2 = pos_x + (1. + ZOOM) * (env->area.x2 - env->area.x1);
+		env->area.y1 = pos_y - (1. + ZOOM) * (env->area.y2 - env->area.y1);
+		env->area.y2 = pos_y + (1. + ZOOM) * (env->area.y2 - env->area.y1);
+	}
+	env->area.zoom[0] = (t_f64)WIDTH / (env->area.x2 - env->area.x1);
+	env->area.zoom[1] = ((t_f64)HEIGHT / (env->area.y2 - env->area.y1)
+		* ((t_f64)HEIGHT / (t_f64)WIDTH)) ;
+}
+
+static void		mandel(int max, int *iter, t_cplex *c)
+{
+	t_cplex	z;
+	double	zr;
+
+	ft_cplex_set(&z, 0., 0.);
+	*iter = 0;
+	while (ft_cplex_mod_f(z.r, z.i) < 4. && *iter < max)
+	{
+		zr = z.r;
+		z.r = z.r * z.r - z.i * z.i + c->r;
+		z.i = 2. * z.i * zr + c->i;
+		(*iter)++;
+	}
 }
 
 static int		draw_mandel(void *data)
@@ -54,10 +83,8 @@ static int		draw_mandel(void *data)
 	int		iter;
 	int		col;
 	int		row;
-	double	py;
-	t_cplex	z;
+	t_f64	py;
 	t_cplex	c;
-	double	zr;
 	t_algo	*algo;
 	t_area	*area;
 
@@ -67,24 +94,14 @@ static int		draw_mandel(void *data)
 	while (row < algo->end)
 	{
 		col = 0;
-		py = row / area->zoom + area->y1;
+		py = pix_to_cplex_y(area, row);
 		while (col < area->size[0])
 		{
-			ft_cplex_set(&c, col / area->zoom + area->x1, py);
-			ft_cplex_set(&z, 0., 0.);
-			iter = 0;
-			while (ft_cplex_mod_f(&z) < 4. && iter < area->max)
-			{
-				zr = z.r;
-				ft_cplex_set(&z,
-					z.r * z.r - z.i * z.i + c.r,
-					2 * z.i * zr + c.i
-				);
-				iter++;
-			}
+			ft_cplex_set(&c, pix_to_cplex_x(area, col), py);
+			mandel(area->max, &iter, &c);
 			if (iter != area->max)
 				algo->data->mlx.win[MAIN_WIN].img[row * WIDTH + col]
-					= C_WHITE;
+					= algo->data->env.cs[iter % 64];
 			col++;
 		}
 		row++;
@@ -92,9 +109,50 @@ static int		draw_mandel(void *data)
 	return (SUCCESS);
 }
 
+static void		julia(int max, int *iter, t_cplex *c, t_cplex *z)
+{
+	double	zr;
+
+	*iter = 0;
+	while (ft_cplex_mod_f(z->r, z->i) < 4. && *iter < max)
+	{
+		zr = z->r;
+		z->r = z->r * z->r - z->i * z->i + c->r;
+		z->i = 2. * z->i * zr + c->i;
+		(*iter)++;
+	}
+}
+
 static int		draw_julia(void *data)
 {
-	(void)data;
+	int		iter;
+	int		col;
+	int		row;
+	double	py;
+	t_cplex	c;
+	t_cplex	z;
+	t_algo	*algo;
+	t_area	*area;
+
+	algo = (t_algo *)data;
+	area = &(algo->data->env.area);
+	row = algo->start;
+	ft_cplex_set(&c, 0.285, 0.01);
+	while (row < algo->end)
+	{
+		col = 0;
+		py = pix_to_cplex_y(area, row);
+		while (col < area->size[0])
+		{
+			ft_cplex_set(&z, pix_to_cplex_x(area, col), py);
+			julia(area->max, &iter, &c, &z);
+			if (iter != area->max)
+				algo->data->mlx.win[MAIN_WIN].img[row * WIDTH + col]
+					= algo->data->env.cs[iter % 64];
+			col++;
+		}
+		row++;
+	}
 	return (SUCCESS);
 }
 
