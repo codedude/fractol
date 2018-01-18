@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/15 17:01:57 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/18 13:33:18 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "mlx.h"
 #include "ft_mlx.h"
 #include "fractol.h"
+#include "ft_complex.h"
 
 static int	loop(void *param)
 {
@@ -50,6 +51,13 @@ int			main(int argc, char **argv)
 	char	buff[3];
 	fgets(buff, 2, stdin);
 */
+
+	/*t_cplex_v	z;
+	t_cplex_v	t;
+	z = (t_cplex_v){1., 2.};
+	t = (t_cplex_v)z * z;
+	printf("%lf, %lf\n", z[0], z[1]);
+	return (0);*/
 	if (argc != 2)
 	{
 		ft_putstr("fractol : ./fractol FRACTAL\n");

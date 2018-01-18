@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/16 15:59:03 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/18 18:23:47 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@
 # define FRACTAL_JULIA	2
 
 typedef struct	s_area {
-	t_f64		x1;
-	t_f64		y1;
-	t_f64		x2;
-	t_f64		y2;
-	t_f64		zoom[2];
-	int			max;
-	int			size[2];
+	t_f128		x1;
+	t_f128		y1;
+	t_f128		x2;
+	t_f128		y2;
+	t_f128		zoom[2];
+	t_u32		max;
+	t_u32		size[2];
 }				t_area;
 
 typedef struct	s_env {
@@ -55,8 +55,8 @@ typedef struct	s_data {
 
 typedef struct	s_algo {
 	t_data		*data;
-	int			start;
-	int			end;
+	t_u32		start;
+	t_u32		end;
 }				t_algo;
 
 
@@ -70,6 +70,6 @@ int				manage_mouse(int keycode, int x, int y, void *param);
 
 void			draw_img(t_data *data);
 void			clean_maps(t_data *data);
-void			zoom(t_env *env, int zoom, int x, int y);
+void			zoom(t_env *env, int zoom, t_u32 x, t_u32 y);
 
 #endif

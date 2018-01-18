@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/24 19:08:37 by valentin          #+#    #+#             */
-/*   Updated: 2018/01/16 16:02:15 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/18 14:53:10 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef long int			t_i64;
 typedef unsigned long int	t_u64;
 typedef float				t_f32;
 typedef double				t_f64;
+typedef long double			t_f128;
 typedef enum				e_bool
 {
 	False, True

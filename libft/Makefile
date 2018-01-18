@@ -6,12 +6,12 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/01/15 10:27:20 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/18 13:35:06 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libft.a
-CC			= gcc
+CC			= clang
 
 SRCD		= srcs
 INCD		= includes
