@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:47:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/18 18:32:28 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/19 17:59:42 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,16 @@ void			zoom(t_env *env, int zoom, t_u32 x, t_u32 y)
 		* ((t_f128)HEIGHT / (t_f128)WIDTH));
 }
 
+/*
+** Classic opti
+*/
+
 static t_u32	mandel(t_u32 max, t_cplex_v c)
 {
 	t_cplex_v	z;
 	t_cplex_v	t;
 	t_f128		p;
 	t_u32		iter;
-	t_u32		iter_add;
 
 	z = (t_cplex_v){0., 0.};
 	t = z;
@@ -87,7 +90,7 @@ static t_u32	mandel(t_u32 max, t_cplex_v c)
 	return (iter - 1);
 }
 
-/* Periodic check (slower)
+/* Periodic check (slower)*
 static t_u32	mandel(t_u32 max, t_cplex_v c)
 {
 	t_cplex_v	z;
@@ -100,7 +103,7 @@ static t_u32	mandel(t_u32 max, t_cplex_v c)
 	z = (t_cplex_v){0., 0.};
 	t = z;
 	iter = 0;
-	iter_add = 8;
+	iter_add = 4;
 	while (iter_add != max)
 	{
 		iter_add += iter_add;
@@ -197,7 +200,19 @@ static int		draw_julia(void *data)
 		row++;
 	}
 	return (SUCCESS);
-}*/
+}
+*/
+
+static int		draw_mandel_perturbed(t_data *data)
+{
+	t_cplex_v	z;
+	t_cplex_v	a;
+	t_cplex_v	b;
+	t_cplex_v	c;
+	t_cplex_v	d;
+	t_f128		d0;
+	t_f128		yn;
+}
 
 void			draw_img(t_data *data)
 {
@@ -208,7 +223,7 @@ void			draw_img(t_data *data)
 	int		tasks;
 
 	i = 0;
-	tasks = data->env.area.size[1] / 8;
+	tasks = TASKS/*data->env.area.size[1] / 8*/;
 	n_div = data->env.area.size[1] / tasks;
 	n_mod = data->env.area.size[1] % tasks;
 	while (i < tasks)

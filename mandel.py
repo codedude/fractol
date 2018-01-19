@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib
 
 
-def mandelbrot( h,w, maxit=1000):
+def mandelbrot( h,w, maxit=128):
 	 # Returns an image of the Mandelbrot fractal of size (h,w). Lower the maxit count, the less detail in the
 	 # set. Increase maxit for more details.
 
@@ -22,7 +22,6 @@ def mandelbrot( h,w, maxit=1000):
 	bn = 0 + 0j		# b initial value, although these values really don't matter
 	cn = 0 + 0j		# c initial value, like at all
 	d0 = c		# first d0 initialized to c
-
 
 	for i in xrange(maxit):
 		z  = z**2 +  c   #   mandelbrot eqn

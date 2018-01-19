@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/18 18:23:47 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/19 17:57:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include "ft_mlx.h"
 # include "ft_tpool.h"
 
-# define WIDTH		600
-# define HEIGHT		600
+# define WIDTH		1000
+# define HEIGHT		1000
 # define TITLE		"FRACTOL DX4000"
 
 # define THREADS	4
 # define TASKS		32
 
-# define ZOOM		0.2
+# define ZOOM		0.01
 # define FRACTAL_MANDEL	1
 # define FRACTAL_JULIA	2
 

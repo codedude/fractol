@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 00:26:13 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/18 18:30:05 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/19 17:48:58 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@ void			init_color(t_color cs[64], int size)
 
 void	mandel_init(t_area *area)
 {
-	area->max = 256;
-	/*
+	area->max = 512;
+
 	area->x1 = -2.1;
 	area->y1 = -1.2;
 	area->x2 = 0.6;
 	area->y2 = 1.2;
-	*/
+	/*
 	area->x1 = -0.562186437092202240316;
 	area->y1 = -0.642821004666185002877;
 	area->x2 = -0.562186413453443144912;
 	area->y2 = -0.642820963096796605665;
-
+*/
 	area->zoom[0] = (t_f128)WIDTH / (area->x2 - area->x1);
 	area->zoom[1] = (t_f128)HEIGHT / (area->y2 - area->y1)
 					* ((t_f128)HEIGHT / (t_f128)WIDTH);
