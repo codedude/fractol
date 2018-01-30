@@ -16,10 +16,10 @@
 void		check_key(t_env *env)
 {
 	if (env->keydown == K_T)
-		env->area.max += 20;
+		env->area.max += 10;
 	if (env->keydown == K_G)
 		if (env->area.max > 21)
-			env->area.max -= 20;
+			env->area.max -= 10;
 	return ;
 }
 

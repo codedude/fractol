@@ -32,7 +32,7 @@ void	init_color(t_color cs1[255], t_color cs2[255])
 
 void	mandel_init(t_area *area)
 {
-	area->max = 512;
+	area->max = 150;
 	area->x1 = -2;
 	area->y1 = -2;
 	area->x2 = 2;
@@ -45,7 +45,7 @@ void	mandel_init(t_area *area)
 
 void	julia_init(t_area *area)
 {
-	area->max = 128;
+	area->max = 64;
 	area->x1 = -1.5;
 	area->y1 = -1.5;
 	area->x2 = 1.5;

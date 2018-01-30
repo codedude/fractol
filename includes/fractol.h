@@ -21,10 +21,10 @@
 # define TITLE		"FRACTOL DX4000"
 
 # define THREADS	4
-# define TASKS		16
+# define TASKS		32
 
-# define ZOOM		0.05
-# define DEZOOM		1.05
+# define ZOOM		0.1
+# define DEZOOM		0.1
 # define FRACTAL_MANDEL	1
 # define FRACTAL_JULIA	2
 # define FRACTAL_BURN	3
