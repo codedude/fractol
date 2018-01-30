@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/19 17:57:46 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/24 00:15:28 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include "ft_mlx.h"
 # include "ft_tpool.h"
 
-# define WIDTH		1000
-# define HEIGHT		1000
+# define WIDTH		800
+# define HEIGHT		800
 # define TITLE		"FRACTOL DX4000"
 
-# define THREADS	4
+# define THREADS	8
 # define TASKS		32
 
-# define ZOOM		0.01
+# define ZOOM		0.2
 # define FRACTAL_MANDEL	1
 # define FRACTAL_JULIA	2
 
