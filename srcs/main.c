@@ -25,7 +25,9 @@ static int	loop(void *param)
 	data = (t_data *)param;
 	clean_maps(data);
 	check_key(&(data->env));
+	data->env.mmove[0] = 0;
 	draw_img(data);
+	data->env.mmove[0] = 1;
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win[MAIN_WIN].win,
 		data->mlx.win[MAIN_WIN].img__, 0, 0);
 	ft_mlx_fps(data->env.show_fps);
@@ -40,6 +42,8 @@ static void	set_hook(t_data *data)
 		&manage_key_down, (void *)data);
 	mlx_hook(data->mlx.win[MAIN_WIN].win, E_MOUSE_DOWN, 0,
 		&manage_mouse, (void *)data);
+	mlx_hook(data->mlx.win[MAIN_WIN].win, E_MOUSE_MOVE, 0,
+		&manage_mouse_move, (void *)data);
 	mlx_loop_hook(data->mlx.mlx, &loop, (void *)data);
 }
 
@@ -47,17 +51,11 @@ int			main(int argc, char **argv)
 {
 	t_data	data;
 	int		fractal;
+
 /*
 	char	buff[3];
 	fgets(buff, 2, stdin);
 */
-
-	/*t_cplex_v	z;
-	t_cplex_v	t;
-	z = (t_cplex_v){1., 2.};
-	t = (t_cplex_v)z * z;
-	printf("%lf, %lf\n", z[0], z[1]);
-	return (0);*/
 	if (argc != 2)
 	{
 		ft_putstr("fractol : ./fractol FRACTAL\n");

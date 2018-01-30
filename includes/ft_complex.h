@@ -13,8 +13,8 @@
 #ifndef FT_COMPLEX_H
 # define FT_COMPLEX_H
 
-#include "ft_type.h"
+# include "ft_type.h"
 
-typedef t_f128 t_cplex_v __attribute__((vector_size(32), aligned(32)));
+typedef t_f128	t_cplex_v __attribute__((vector_size(32),aligned(32)));
 
 #endif
