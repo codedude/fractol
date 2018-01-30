@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 00:26:13 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/19 17:48:58 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/30 23:16:22 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_color(t_color cs1[255], t_color cs2[255])
 
 void	mandel_init(t_area *area)
 {
-	area->max = 150;
+	area->max = 1024;
 	area->x1 = -2;
 	area->y1 = -2;
 	area->x2 = 2;
@@ -74,6 +74,7 @@ int		env_init(t_env *env, int fractal, int width, int height)
 	if ((env->tp = tp_create(THREADS, TP_ON_START)) == NULL)
 		return (ERROR);
 	env->keydown = -1;
+	env->refresh = 1;
 	env->show_fps = 0;
 	env->mmove[0] = 0;
 	env->mmove[1] = 400;

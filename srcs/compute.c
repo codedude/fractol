@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:47:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/23 19:11:01 by valentin         ###   ########.fr       */
+/*   Updated: 2018/01/30 23:02:50 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,16 @@
 
 void			clean_maps(t_data *data)
 {
-	ft_bzero((void *)data->mlx.win[MAIN_WIN].img, 4 * WIDTH * HEIGHT);
+	int		*tmp;
+	size_t	i;
+
+	tmp = (t_color *)data->mlx.win[MAIN_WIN].img;
+	i = 0;
+	while (i < WIDTH * HEIGHT)
+	{
+		tmp[i] = 0;
+		i++;
+	}
 }
 
 t_f128			pix_to_cplex_x(t_area *area, t_u32 x)
@@ -147,13 +156,8 @@ int		draw_mandel(void *data)
 	}
 	return (SUCCESS);
 }
-<<<<<<< HEAD
-/*
-static void		julia(int max, int *iter, t_cplex *c, t_cplex *z)
-=======
 
 static t_u32	julia(t_u32 max, t_cplex_v c, t_cplex_v z)
->>>>>>> 6b898c26e9dcb280d81f399aad9bbb20e6e417cd
 {
 	t_cplex_v	t;
 	t_f128		p;

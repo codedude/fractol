@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/19 17:55:05 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/30 23:32:10 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@ static int	loop(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	clean_maps(data);
 	check_key(&(data->env));
 	data->env.mmove[0] = 0;
-	draw_img(data);
+	if (data->env.refresh == 1)
+	{
+		clean_maps(data);
+		draw_img(data);
+		mlx_put_image_to_window(data->mlx.mlx, data->mlx.win[MAIN_WIN].win,
+			data->mlx.win[MAIN_WIN].img__, 0, 0);
+	}
+	data->env.refresh = 0;
 	data->env.mmove[0] = 1;
-	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win[MAIN_WIN].win,
-		data->mlx.win[MAIN_WIN].img__, 0, 0);
 	ft_mlx_fps(data->env.show_fps);
 	return (1);
 }

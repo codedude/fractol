@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/24 00:15:28 by valentin         ###   ########.fr       */
+/*   Updated: 2018/01/30 23:11:49 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define THREADS	8
 # define TASKS		32
 
-# define ZOOM		0.1
-# define DEZOOM		0.1
+# define ZOOM		0.15
+# define DEZOOM		0.15
 # define FRACTAL_MANDEL	1
 # define FRACTAL_JULIA	2
 # define FRACTAL_BURN	3
@@ -43,6 +43,7 @@ typedef struct	s_env {
 	t_tpool		*tp;
 	t_area		area;
 	int			keydown;
+	int			refresh;
 	int			mmove[3];
 	int			show_fps;
 	int			fractal;
