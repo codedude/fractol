@@ -23,9 +23,11 @@
 # define THREADS	8
 # define TASKS		32
 
-# define ZOOM		0.2
+# define ZOOM		0.1
+# define DEZOOM		0.1
 # define FRACTAL_MANDEL	1
 # define FRACTAL_JULIA	2
+# define FRACTAL_BURN	3
 
 typedef struct	s_area {
 	t_f128		x1;
@@ -41,11 +43,13 @@ typedef struct	s_env {
 	t_tpool		*tp;
 	t_area		area;
 	int			keydown;
+	int			mmove[3];
 	int			show_fps;
 	int			fractal;
 	int			width;
 	int			height;
-	t_color		cs[64];
+	t_color		cs1[255];
+	t_color		cs2[255];
 }				t_env;
 
 typedef struct	s_data {
@@ -59,7 +63,6 @@ typedef struct	s_algo {
 	t_u32		end;
 }				t_algo;
 
-
 int				env_init(t_env *env, int fractal, int width, int height);
 void			env_destroy(t_data *data);
 
@@ -67,6 +70,7 @@ void			check_key(t_env *env);
 int				manage_key_down(int keycode, void *param);
 int				manage_key_up(int keycode, void *param);
 int				manage_mouse(int keycode, int x, int y, void *param);
+int				manage_mouse_move(int x, int y, void *param);
 
 void			draw_img(t_data *data);
 void			clean_maps(t_data *data);

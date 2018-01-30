@@ -17,48 +17,54 @@
 #include "fractol.h"
 #include "ft_tpool.h"
 
-void			init_color(t_color cs[64], int size)
+void	init_color(t_color cs1[255], t_color cs2[255])
 {
 	int	i;
 
 	i = 0;
-	while (i < size)
+	while (i < 255)
 	{
-		cs[i] = ft_mlx_getcolor(10 + i * 3, 10 + i * 3, 250 - i * 3);
+		cs1[i] = ft_mlx_getcolor(15, i, 15);
+		cs2[i] = ft_mlx_getcolor(i, 240, i);
 		i++;
 	}
 }
 
 void	mandel_init(t_area *area)
 {
-	area->max = 512;
-
-	area->x1 = -2.1;
-	area->y1 = -1.2;
-	area->x2 = 0.6;
-	area->y2 = 1.2;
-	/*
-	area->x1 = -0.562186437092202240316;
-	area->y1 = -0.642821004666185002877;
-	area->x2 = -0.562186413453443144912;
-	area->y2 = -0.642820963096796605665;
-*/
+	area->max = 150;
+	area->x1 = -2;
+	area->y1 = -2;
+	area->x2 = 2;
+	area->y2 = 2;
 	area->zoom[0] = (t_f128)WIDTH / (area->x2 - area->x1);
-	area->zoom[1] = (t_f128)HEIGHT / (area->y2 - area->y1)
-					* ((t_f128)HEIGHT / (t_f128)WIDTH);
+	area->zoom[1] = (t_f128)HEIGHT / (area->y2 - area->y1);
 	area->size[0] = WIDTH;
 	area->size[1] = HEIGHT;
 }
 
 void	julia_init(t_area *area)
 {
-	area->max = 75;
+	area->max = 64;
 	area->x1 = -1.5;
 	area->y1 = -1.5;
 	area->x2 = 1.5;
 	area->y2 = 1.5;
-	area->zoom[0] = WIDTH / (area->x2 - area->x1);
-	area->zoom[1] = HEIGHT / (area->y2 - area->y1);
+	area->zoom[0] = (t_f128)WIDTH / (area->x2 - area->x1);
+	area->zoom[1] = (t_f128)HEIGHT / (area->y2 - area->y1);
+	area->size[0] = WIDTH;
+	area->size[1] = HEIGHT;
+}
+
+void	burn_init(t_area *area)
+{
+	area->max = 512;
+	area->x1 = -2;
+	area->y1 = -2;
+	area->x2 = 2;
+	area->y2 = 2;
+	area->zoom[0] = (t_f128)WIDTH / (area->x2 - area->x1);
+	area->zoom[1] = (t_f128)HEIGHT / (area->y2 - area->y1);
 	area->size[0] = WIDTH;
 	area->size[1] = HEIGHT;
 }
@@ -69,14 +75,19 @@ int		env_init(t_env *env, int fractal, int width, int height)
 		return (ERROR);
 	env->keydown = -1;
 	env->show_fps = 0;
+	env->mmove[0] = 0;
+	env->mmove[1] = 400;
+	env->mmove[2] = 400;
 	env->fractal = fractal;
 	env->width = width;
 	env->height = height;
-	init_color(env->cs, 64);
+	init_color(env->cs1, env->cs2);
 	if (fractal == FRACTAL_MANDEL)
 		mandel_init(&(env->area));
 	else if (fractal == FRACTAL_JULIA)
 		julia_init(&(env->area));
+	else if (fractal == FRACTAL_BURN)
+		burn_init(&(env->area));
 	return (SUCCESS);
 }
 

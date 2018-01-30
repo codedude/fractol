@@ -15,11 +15,11 @@
 
 void		check_key(t_env *env)
 {
-	if(env->keydown == K_T)
+	if (env->keydown == K_T)
 		env->area.max += 10;
 	if (env->keydown == K_G)
-		if (env->area.max > 4)
-			env->area.max -= 2;
+		if (env->area.max > 21)
+			env->area.max -= 10;
 	return ;
 }
 
@@ -55,5 +55,17 @@ int			manage_mouse(int keycode, int x, int y, void *param)
 		zoom(&(data->env), 1, x, y);
 	else if (keycode == M_UP)
 		zoom(&(data->env), -1, x, y);
+	return (1);
+}
+
+int			manage_mouse_move(int x, int y, void *param)
+{
+	t_data	*data;
+
+	data = (t_data *)param;
+	if (data->env.fractal != FRACTAL_JULIA || data->env.mmove[0] == 0)
+		return (0);
+	data->env.mmove[1] = x;
+	data->env.mmove[2] = y;
 	return (1);
 }

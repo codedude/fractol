@@ -21,7 +21,7 @@ SRCS		=	$(SRCD)/tp_queue.c $(SRCD)/tp_thread.c \
 				$(SRCD)/tp_pool.c $(SRCD)/tp_pool2.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-I$(LIBFTD)/includes -I$(INCD) -O3
+CFLAGS		+=	-I$(LIBFTD)/includes -I$(INCD) -O3 -flto -march=native
 LDFLAGS		+=	-Wall -Wextra -Werror -std=c11 -pedantic -Wno-unused-result
 LDLIBS		+=
 

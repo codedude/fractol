@@ -23,9 +23,9 @@ SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
 				$(SRCD)/env.c $(SRCD)/compute.c $(SRCD)/binds.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-I$(INCD)  -O3 -g -Rpass-analysis=loop-vectorize\
+CFLAGS		+=	-I$(INCD) -std=c11 -O3 -flto -march=native\
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(MLXD)
-LDFLAGS		+=	-Wextra -Wall -std=c11 -pedantic -Wno-unused-result
+LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -L$(LIBTPOOLD) -ltpool -L$(MLXD) -lmlx -lm \
 				-framework OpenGL -framework AppKit
 
