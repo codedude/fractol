@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
+#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/01/18 13:36:41 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/31 17:54:40 by valentin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,12 @@ LIBTPOOLD	=	libtpool
 MLXD		=	minilibx_macos
 
 SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
-				$(SRCD)/env.c $(SRCD)/compute.c $(SRCD)/binds.c
+				$(SRCD)/env.c $(SRCD)/compute.c $(SRCD)/binds.c \
+				$(SRCD)/fractal_init.c $(SRCD)/point.c \
+				$(SRCD)/mandel.c $(SRCD)/julia.c $(SRCD)/burning_ship.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-I$(INCD) -std=c11 -O3 -flto -march=native\
+CFLAGS		+=	-I$(INCD) -std=c11 -O3 -flto -march=native -g3\
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(MLXD)
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -L$(LIBTPOOLD) -ltpool -L$(MLXD) -lmlx -lm \

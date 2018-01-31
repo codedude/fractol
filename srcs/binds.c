@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 09:53:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/30 23:07:24 by valentin         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:25:55 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,30 @@
 
 void		check_key(t_env *env)
 {
+	env->refresh += 1;
 	if (env->keydown == K_T)
-	{
-		env->area.max += 10;
-		env->refresh = 1;
-	}
+		env->area.max += 5;
 	else if (env->keydown == K_G)
 	{
-		if (env->area.max > 21)
-			env->area.max -= 10;
-		env->refresh = 1;
+		if (env->area.max > 5)
+			env->area.max -= 5;
+	}
+	else if (env->keydown == K_Y)
+		env->area.max += 30;
+	else if (env->keydown == K_H)
+	{
+		if (env->area.max > 30)
+			env->area.max -= 30;
+	}
+	else if (env->keydown == K_R)
+		color_rot(env->cs);
+	else
+		env->refresh = (env->refresh == 2) ? 1 : 0;
+	if (env->refresh == 1)
+	{
+		ft_putstr("MAX : ");
+		ft_putnbr((int)env->area.max);
+		ft_putchar('\n');
 	}
 }
 

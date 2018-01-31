@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 00:26:13 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/30 23:16:22 by valentin         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:30:40 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,56 +17,39 @@
 #include "fractol.h"
 #include "ft_tpool.h"
 
-void	init_color(t_color cs1[255], t_color cs2[255])
+void	color_rot(t_color cs[16])
 {
-	int	i;
+	t_color	tmp;
+	int		i;
 
 	i = 0;
-	while (i < 255)
+	tmp = cs[0];
+	while (i < 15)
 	{
-		cs1[i] = ft_mlx_getcolor(15, i, 15);
-		cs2[i] = ft_mlx_getcolor(i, 240, i);
+		cs[i] = cs[i + 1];
 		i++;
 	}
+	cs[i] = tmp;
 }
 
-void	mandel_init(t_area *area)
+void	init_color(t_color cs[16])
 {
-	area->max = 1024;
-	area->x1 = -2;
-	area->y1 = -2;
-	area->x2 = 2;
-	area->y2 = 2;
-	area->zoom[0] = (t_f128)WIDTH / (area->x2 - area->x1);
-	area->zoom[1] = (t_f128)HEIGHT / (area->y2 - area->y1);
-	area->size[0] = WIDTH;
-	area->size[1] = HEIGHT;
-}
-
-void	julia_init(t_area *area)
-{
-	area->max = 64;
-	area->x1 = -1.5;
-	area->y1 = -1.5;
-	area->x2 = 1.5;
-	area->y2 = 1.5;
-	area->zoom[0] = (t_f128)WIDTH / (area->x2 - area->x1);
-	area->zoom[1] = (t_f128)HEIGHT / (area->y2 - area->y1);
-	area->size[0] = WIDTH;
-	area->size[1] = HEIGHT;
-}
-
-void	burn_init(t_area *area)
-{
-	area->max = 512;
-	area->x1 = -2;
-	area->y1 = -2;
-	area->x2 = 2;
-	area->y2 = 2;
-	area->zoom[0] = (t_f128)WIDTH / (area->x2 - area->x1);
-	area->zoom[1] = (t_f128)HEIGHT / (area->y2 - area->y1);
-	area->size[0] = WIDTH;
-	area->size[1] = HEIGHT;
+	cs[0] = ft_mlx_getcolor(66, 30, 15);
+	cs[1] = ft_mlx_getcolor(25, 7, 26);
+	cs[2] = ft_mlx_getcolor(9, 1, 47);
+	cs[3] = ft_mlx_getcolor(4, 4, 73);
+	cs[4] = ft_mlx_getcolor(0, 7, 100);
+	cs[5] = ft_mlx_getcolor(12, 44, 138);
+	cs[6] = ft_mlx_getcolor(24, 82, 177);
+	cs[7] = ft_mlx_getcolor(57, 125, 209);
+	cs[8] = ft_mlx_getcolor(134, 181, 229);
+	cs[9] = ft_mlx_getcolor(211, 236, 248);
+	cs[10] = ft_mlx_getcolor(241, 233, 191);
+	cs[11] = ft_mlx_getcolor(248, 201, 95);
+	cs[12] = ft_mlx_getcolor(255, 170, 0);
+	cs[13] = ft_mlx_getcolor(204, 128, 0);
+	cs[14] = ft_mlx_getcolor(153, 87, 0);
+	cs[15] = ft_mlx_getcolor(106, 52, 3);
 }
 
 int		env_init(t_env *env, int fractal, int width, int height)
@@ -77,12 +60,12 @@ int		env_init(t_env *env, int fractal, int width, int height)
 	env->refresh = 1;
 	env->show_fps = 0;
 	env->mmove[0] = 0;
-	env->mmove[1] = 400;
-	env->mmove[2] = 400;
+	env->mmove[1] = WIDTH / 2;
+	env->mmove[2] = HEIGHT / 2;
 	env->fractal = fractal;
 	env->width = width;
 	env->height = height;
-	init_color(env->cs1, env->cs2);
+	init_color(env->cs);
 	if (fractal == FRACTAL_MANDEL)
 		mandel_init(&(env->area));
 	else if (fractal == FRACTAL_JULIA)

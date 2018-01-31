@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:43:44 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/15 17:02:55 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/31 16:22:24 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,26 +66,23 @@ void	ft_mlx_destroy(t_mlx *mlx, int win)
 	}
 }
 
-void	ft_mlx_fps(int show_fps)
+void	ft_mlx_fps(int show_fps, int refresh)
 {
-	static struct timeval	last;
-	static int				fps = 0;
+	static struct timeval	last = {0, 0};
+	double					fps;
 	struct timeval			new;
 
 	if (show_fps == 0)
 		return ;
-	if (fps == 0)
-		gettimeofday(&last, NULL);
 	gettimeofday(&new, NULL);
-	if ((new.tv_sec - last.tv_sec) * 1000000 + (new.tv_usec - last.tv_usec)
-		> 1000000)
+	if (refresh == 1)
 	{
+		fps = (new.tv_sec - last.tv_sec) * 1000 + (new.tv_usec - last.tv_usec)
+			/ 1000.;
 		ft_putstr("FPS : ");
-		ft_putnbr(fps);
+		ft_putnbr((int)(1000. /fps));
 		ft_putchar('\n');
-		fps = 0;
-		last.tv_usec = new.tv_usec;
-		last.tv_sec = new.tv_sec;
 	}
-	fps++;
+	last.tv_usec = new.tv_usec;
+	last.tv_sec = new.tv_sec;
 }

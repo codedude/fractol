@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/30 23:11:49 by valentin         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:43:00 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 # include "ft_mlx.h"
 # include "ft_tpool.h"
 
-# define WIDTH		800
-# define HEIGHT		800
+# define WIDTH		1000
+# define HEIGHT		1000
 # define TITLE		"FRACTOL DX4000"
 
 # define THREADS	8
 # define TASKS		32
 
-# define ZOOM		0.15
-# define DEZOOM		0.15
+# define ZOOM		0.25
+# define DEZOOM		0.75
 # define FRACTAL_MANDEL	1
 # define FRACTAL_JULIA	2
 # define FRACTAL_BURN	3
@@ -49,8 +49,7 @@ typedef struct	s_env {
 	int			fractal;
 	int			width;
 	int			height;
-	t_color		cs1[255];
-	t_color		cs2[255];
+	t_color		cs[16];
 }				t_env;
 
 typedef struct	s_data {
@@ -66,6 +65,15 @@ typedef struct	s_algo {
 
 int				env_init(t_env *env, int fractal, int width, int height);
 void			env_destroy(t_data *data);
+void			mandel_init(t_area *area);
+void			julia_init(t_area *area);
+void			burn_init(t_area *area);
+
+void			color_rot(t_color cs[16]);
+t_f128			pix_to_cplex_x(t_area *area, int x);
+t_f128			pix_to_cplex_y(t_area *area, int y);
+t_f128			pix_to_cplex_mdb_x(int x);
+t_f128			pix_to_cplex_mdb_y(int y);
 
 void			check_key(t_env *env);
 int				manage_key_down(int keycode, void *param);
@@ -75,6 +83,10 @@ int				manage_mouse_move(int x, int y, void *param);
 
 void			draw_img(t_data *data);
 void			clean_maps(t_data *data);
-void			zoom(t_env *env, int zoom, t_u32 x, t_u32 y);
+void			zoom(t_env *env, int zoom, int x, int y);
+
+int				draw_julia(void *data);
+int				draw_burn(void *data);
+int				draw_mandel(void *data);
 
 #endif

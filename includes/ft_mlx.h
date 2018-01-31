@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:44:18 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/15 16:36:51 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/31 16:02:39 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void			ft_mlx_init(t_mlx *mlx);
 int				ft_mlx_win(t_mlx *mlx, int width, int height, char *title);
 void			ft_mlx_destroy(t_mlx *mlx, int win);
 int				ft_mlx_exit(void);
-void			ft_mlx_fps(int show_fps);
+void			ft_mlx_fps(int show_fps, int refresh);
 
 /*
 ** Pixel manipulation
