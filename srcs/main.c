@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/31 17:57:59 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/02 18:36:44 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,13 @@ int			main(int argc, char **argv)
 	if (argc != 2)
 	{
 		ft_putstr("fractol : ./fractol FRACTAL\n");
+		ft_putstr("FRACTAL : 1 = Mandelbrot, 2 = Julia, 3 = Burning Ship\n");
 		return (EXIT_SUCCESS);
 	}
 	fractal = ft_atoi(argv[1]);
 	if (fractal < 1 || fractal > 3)
 	{
-		ft_putstr("fractal number between 1 and 3\n");
+		ft_putstr("FRACTAL : 1 = Mandelbrot, 2 = Julia, 3 = Burning Ship\n");
 		return (EXIT_SUCCESS);
 	}
 	if (env_init(&(data.env), fractal, WIDTH, HEIGHT) == ERROR)

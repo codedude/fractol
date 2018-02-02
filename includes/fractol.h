@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/31 17:43:00 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/02 18:27:02 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define ZOOM		0.25
 # define DEZOOM		0.75
+# define MOVE		0.01
 # define FRACTAL_MANDEL	1
 # define FRACTAL_JULIA	2
 # define FRACTAL_BURN	3
@@ -76,6 +77,7 @@ t_f128			pix_to_cplex_mdb_x(int x);
 t_f128			pix_to_cplex_mdb_y(int y);
 
 void			check_key(t_env *env);
+void			check_key2(t_env *env);
 int				manage_key_down(int keycode, void *param);
 int				manage_key_up(int keycode, void *param);
 int				manage_mouse(int keycode, int x, int y, void *param);
