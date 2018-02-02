@@ -59,9 +59,9 @@ int				draw_burn(void *data)
 			c[0] = pix_to_cplex_x(area, pos[0] - 1);
 			iter = burn(area->max, c);
 			if (iter != area->max)
-				algo->data->mlx.win[MAIN_WIN]
-					.img[(pos[1] - 1) * WIDTH + pos[0] - 1]
-				= algo->data->env.cs[iter % 16];
+				algo->data->mlx.win[MAIN_WIN].img[
+					(pos[1] - 1) * WIDTH + pos[0] - 1] = algo->data->env.cs[iter
+					% 16];
 		}
 	}
 	return (SUCCESS);

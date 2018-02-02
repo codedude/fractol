@@ -80,7 +80,7 @@ void	ft_mlx_fps(int show_fps, int refresh)
 		fps = (new.tv_sec - last.tv_sec) * 1000 + (new.tv_usec - last.tv_usec)
 			/ 1000.;
 		ft_putstr("FPS : ");
-		ft_putnbr((int)(1000. /fps));
+		ft_putnbr((int)(1000. / fps));
 		ft_putchar('\n');
 	}
 	last.tv_usec = new.tv_usec;

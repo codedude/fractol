@@ -56,10 +56,6 @@ int			main(int argc, char **argv)
 	t_data	data;
 	int		fractal;
 
-/*
-	char	buff[3];
-	fgets(buff, 2, stdin);
-*/
 	if (argc != 2)
 	{
 		ft_putstr("fractol : ./fractol FRACTAL\n");

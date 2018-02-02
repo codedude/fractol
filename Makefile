@@ -25,7 +25,7 @@ SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
 				$(SRCD)/mandel.c $(SRCD)/julia.c $(SRCD)/burning_ship.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-I$(INCD) -std=c11 -O3 -flto -march=native -g\
+CFLAGS		+=	-I$(INCD) -O3 -flto -march=native -g\
 				-I$(LIBFTD)/includes -I$(LIBTPOOLD)/includes -I$(MLXD)
 LDFLAGS		+=	-Wextra -Wall -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -L$(LIBTPOOLD) -ltpool -L$(MLXD) -lmlx -lm \
