@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/02 18:36:44 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/05 10:59:40 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	loop(void *param)
 	{
 		clean_maps(data);
 		draw_img(data);
+		save_img(data);
 		mlx_put_image_to_window(data->mlx.mlx, data->mlx.win[MAIN_WIN].win,
 			data->mlx.win[MAIN_WIN].img__, 0, 0);
 	}

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 18:26:03 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/02 18:27:43 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/05 11:00:59 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void		check_key2(t_env *env)
 	}
 	else
 		env->refresh = (env->refresh == 2) ? 1 : 0;
+	if (env->keydown == K_S)
+		env->save_img = 1;
 }
 
 void		check_key(t_env *env)

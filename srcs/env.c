@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 00:26:13 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/02 18:26:21 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/05 10:59:23 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		env_init(t_env *env, int fractal, int width, int height)
 	env->keydown = -1;
 	env->refresh = 1;
 	env->show_fps = 0;
+	env->save_img = 0;
 	env->mmove[0] = 0;
 	env->mmove[1] = WIDTH / 2;
 	env->mmove[2] = HEIGHT / 2;

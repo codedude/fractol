@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/02 18:27:02 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/05 12:00:55 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define WIDTH		1000
 # define HEIGHT		1000
 # define TITLE		"FRACTOL DX4000"
+# define FILE_NAME	"fractal.bmp"
 
 # define THREADS	8
 # define TASKS		32
@@ -50,6 +51,7 @@ typedef struct	s_env {
 	int			fractal;
 	int			width;
 	int			height;
+	int			save_img;
 	t_color		cs[16];
 }				t_env;
 
@@ -90,5 +92,7 @@ void			zoom(t_env *env, int zoom, int x, int y);
 int				draw_julia(void *data);
 int				draw_burn(void *data);
 int				draw_mandel(void *data);
+
+int				save_img(t_data *data);
 
 #endif
