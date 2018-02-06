@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 13:44:22 by valentin          #+#    #+#             */
-/*   Updated: 2018/02/06 13:51:50 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/06 23:20:18 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 
 static void	write_int(int fd, int n, int bytes)
 {
-	ft_putchar_fd((n & 0x000000FF), fd);
-	if (bytes > 1)
-		ft_putchar_fd((n & 0x0000FF00) >> 8, fd);
+	char	buff[4];
+
+	buff[0] = n & 0x000000FF;
+	buff[1] = (n & 0x0000FF00) >> 8;
 	if (bytes == 4)
 	{
-		ft_putchar_fd((n & 0x00FF0000) >> 16, fd);
-		ft_putchar_fd((n & 0xFF000000) >> 24, fd);
+		buff[2] = (n & 0x00FF0000) >> 16;
+		buff[3] = (n & 0xFF000000) >> 24;
 	}
+	write(fd, buff, bytes);
 }
 
 int			write_header(int fd, int size[2])
 {
-	write_int(fd, 0x42, 1);
-	write_int(fd, 0x4D, 1);
-	write_int(fd, size[0] * size[1] * sizeof(t_color) + 54, 4);
-	write_int(fd, 0x00, 2);
-	write_int(fd, 0x00, 2);
+	write(fd, "BM", 2);
+	write_int(fd, (size[0] * size[1] * sizeof(t_color) + 54), 4);
+	write_int(fd, 0x00, 4);
 	write_int(fd, 0x36, 4);
 	return (SUCCESS);
 }

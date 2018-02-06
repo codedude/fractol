@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/06 13:57:50 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/06 22:42:38 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static int	loop(void *param)
 		mlx_put_image_to_window(data->mlx.mlx, data->mlx.win[MAIN_WIN].win,
 			data->mlx.win[MAIN_WIN].img__, 0, 0);
 	}
-	ft_mlx_fps(data->env.show_fps, data->env.refresh);
 	if (save_img(data) == ERROR)
 		ft_putstr("Image can't be save\n");
+	ft_mlx_fps(data->env.show_fps, data->env.refresh);
 	data->env.refresh = 0;
 	data->env.mmove[0] = 1;
 	return (1);

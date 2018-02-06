@@ -4,4 +4,6 @@ minilibx_macos/*.a
 *.o
 *.a
 *.tgz
+*.bmp
+saved_img/*.bmp
 fractol

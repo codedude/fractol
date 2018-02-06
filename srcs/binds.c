@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binds.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 09:53:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/02 18:26:43 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/06 22:45:25 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int			manage_key_up(int keycode, void *param)
 	data->env.keydown = -1;
 	if (keycode == K_F)
 		data->env.show_fps = !data->env.show_fps;
+	if (keycode == K_S)
+		data->env.save_img = 1;
 	return (1);
 }
 
