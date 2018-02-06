@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 09:53:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/06 22:45:25 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/06 23:46:11 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ int			manage_key_up(int keycode, void *param)
 		data->env.show_fps = !data->env.show_fps;
 	if (keycode == K_S)
 		data->env.save_img = 1;
+	if (keycode == K_I)
+	{
+		if (data->env.fractal == FRACTAL_MANDEL)
+			mandel_init(&(data->env.area));
+		else if (data->env.fractal == FRACTAL_JULIA)
+			julia_init(&(data->env.area));
+		else if (data->env.fractal == FRACTAL_BURN)
+			burn_init(&(data->env.area));
+		data->env.refresh = 1;
+	}
 	return (1);
 }
 

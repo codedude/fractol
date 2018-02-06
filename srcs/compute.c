@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:47:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/02 18:26:19 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/06 23:53:40 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 void			clean_maps(t_data *data)
 {
-	int		*tmp;
+	t_color	*tmp;
 	size_t	i;
 
-	tmp = (t_color *)data->mlx.win[MAIN_WIN].img;
+	tmp = data->mlx.win[MAIN_WIN].img;
 	i = 0;
 	while (i < WIDTH * HEIGHT)
 	{

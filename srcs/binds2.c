@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 18:26:03 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/06 22:44:03 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/06 23:58:37 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,19 @@ void		check_key(t_env *env)
 {
 	env->refresh += 1;
 	if (env->keydown == K_T)
-		env->area.max += 5;
-	else if (env->keydown == K_G)
-	{
-		if (env->area.max > 5)
-			env->area.max -= 5;
-	}
+		env->area.max += 3;
+	else if (env->keydown == K_G && env->area.max > 3)
+		env->area.max -= 3;
 	else if (env->keydown == K_Y)
-		env->area.max += 30;
-	else if (env->keydown == K_H)
-	{
-		if (env->area.max > 30)
-			env->area.max -= 30;
-	}
+		env->area.max += 25;
+	else if (env->keydown == K_H && env->area.max > 25)
+		env->area.max -= 25;
+	else if (env->keydown == K_U)
+		env->area.max += 100;
+	else if (env->keydown == K_J && env->area.max > 100)
+			env->area.max -= 100;
 	else if (env->keydown == K_R)
 		color_rot(env->cs);
 	else
 		check_key2(env);
-	if (env->refresh == 1 && env->show_fps == 1)
-	{
-		ft_putstr("MAX : ");
-		ft_putnbr((int)env->area.max);
-		ft_putchar('\n');
-	}
 }

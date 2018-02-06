@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   burning_ship.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 17:39:33 by valentin          #+#    #+#             */
-/*   Updated: 2018/02/02 18:26:20 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/06 23:42:08 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 #include "fractol.h"
 #include "ft_mlx.h"
 #include "ft_complex.h"
+
+void			burn_init(t_area *area)
+{
+	area->max = 128;
+	area->x1 = -2;
+	area->y1 = -2;
+	area->x2 = 2;
+	area->y2 = 2;
+	area->zoom[0] = (t_f128)WIDTH / (area->x2 - area->x1);
+	area->zoom[1] = (t_f128)HEIGHT / (area->y2 - area->y1);
+	area->size[0] = WIDTH;
+	area->size[1] = HEIGHT;
+}
 
 static t_u32	burn(t_u32 max, t_cplex_v c)
 {
