@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/05 10:59:40 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/06 13:57:50 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ static int	loop(void *param)
 	{
 		clean_maps(data);
 		draw_img(data);
-		save_img(data);
 		mlx_put_image_to_window(data->mlx.mlx, data->mlx.win[MAIN_WIN].win,
 			data->mlx.win[MAIN_WIN].img__, 0, 0);
 	}
 	ft_mlx_fps(data->env.show_fps, data->env.refresh);
+	if (save_img(data) == ERROR)
+		ft_putstr("Image can't be save\n");
 	data->env.refresh = 0;
 	data->env.mmove[0] = 1;
 	return (1);

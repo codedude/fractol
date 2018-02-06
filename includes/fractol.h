@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/05 12:00:55 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/06 13:52:37 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define WIDTH		1000
 # define HEIGHT		1000
 # define TITLE		"FRACTOL DX4000"
-# define FILE_NAME	"fractal.bmp"
+# define FILE_NAME	"saved_img/fractal_XXX.bmp"
 
 # define THREADS	8
 # define TASKS		32
@@ -93,6 +93,9 @@ int				draw_julia(void *data);
 int				draw_burn(void *data);
 int				draw_mandel(void *data);
 
+int				write_header(int fd, int size[2]);
+int				write_dibheader(int fd, int size[2]);
+int				write_img(int fd, int size[2], t_color *map);
 int				save_img(t_data *data);
 
 #endif

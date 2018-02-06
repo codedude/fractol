@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
+#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/02/05 11:01:37 by vparis           ###   ########.fr        #
+#    Updated: 2018/02/06 13:45:41 by valentin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
 				$(SRCD)/env.c $(SRCD)/compute.c $(SRCD)/binds.c \
 				$(SRCD)/fractal_init.c $(SRCD)/point.c $(SRCD)/binds2.c \
 				$(SRCD)/mandel.c $(SRCD)/julia.c $(SRCD)/burning_ship.c \
-				$(SRCD)/export_bmp.c
+				$(SRCD)/export_bmp.c $(SRCD)/export_bmp2.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
 CFLAGS		+=	-I$(INCD) -O3 -flto -march=native -g\
