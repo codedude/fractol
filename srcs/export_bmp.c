@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export_bmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 11:01:14 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/06 14:05:35 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/08 13:44:26 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include "libft.h"
-#include "mlx.h"
 #include "ft_mlx.h"
 #include "fractol.h"
 
@@ -26,6 +23,31 @@ static void	get_filename(int nb, char *filename)
 	filename[18] = '0' + nb / 100;
 	filename[19] = '0' + nb / 10 - (nb / 100) * 10;
 	filename[20] = '0' + nb % 10;
+}
+
+int			write_header(int fd, int size[2])
+{
+	write(fd, "BM", 2);
+	write_int(fd, (size[0] * size[1] * sizeof(t_color) + 54), 4);
+	write_int(fd, 0x00, 4);
+	write_int(fd, 0x36, 4);
+	return (SUCCESS);
+}
+
+int			write_dibheader(int fd, int size[2])
+{
+	write_int(fd, 0x28, 4);
+	write_int(fd, size[1], 4);
+	write_int(fd, size[0], 4);
+	write_int(fd, 0x01, 2);
+	write_int(fd, 0x20, 2);
+	write_int(fd, 0x00, 4);
+	write_int(fd, 0x00, 4);
+	write_int(fd, 0x0B13, 4);
+	write_int(fd, 0x0B13, 4);
+	write_int(fd, 0x00, 4);
+	write_int(fd, 0x00, 4);
+	return (SUCCESS);
 }
 
 int			save_img(t_data *data)

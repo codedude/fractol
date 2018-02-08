@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binds2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 18:26:03 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/06 23:58:37 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/08 13:26:42 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		check_key(t_env *env)
 	else if (env->keydown == K_U)
 		env->area.max += 100;
 	else if (env->keydown == K_J && env->area.max > 100)
-			env->area.max -= 100;
+		env->area.max -= 100;
 	else if (env->keydown == K_R)
 		color_rot(env->cs);
 	else

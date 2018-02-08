@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   burning_ship.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 17:39:33 by valentin          #+#    #+#             */
-/*   Updated: 2018/02/06 23:42:08 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/08 13:25:55 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fractol.h"
-#include "ft_mlx.h"
 #include "ft_complex.h"
 
 void			burn_init(t_area *area)

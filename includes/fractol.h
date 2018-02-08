@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/06 23:31:12 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/08 13:45:36 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 # include "ft_mlx.h"
 # include "ft_tpool.h"
 
-# define WIDTH		1000
-# define HEIGHT		1000
-# define TITLE		"FRACTOL DX4000"
-# define FILE_NAME	"saved_img/fractal_XXX.bmp"
+# define WIDTH			1000
+# define HEIGHT			1000
+# define TITLE			"FRACTOL DX4000"
+# define FILE_NAME		"saved_img/fractal_XXX.bmp"
 
-# define THREADS	8
-# define TASKS		32
+# define THREADS		8
+# define TASKS			32
 
-# define ZOOM		0.25
-# define DEZOOM		0.75
-# define MOVE		0.01
+# define ZOOM			0.25
+# define DEZOOM			0.75
+# define MOVE			0.01
 # define FRACTAL_MANDEL	1
 # define FRACTAL_JULIA	2
 # define FRACTAL_BURN	3
@@ -96,6 +96,7 @@ int				draw_mandel(void *data);
 int				write_header(int fd, int size[2]);
 int				write_dibheader(int fd, int size[2]);
 int				write_img(int fd, int size[2], t_color *map);
+void			write_int(int fd, int n, int bytes);
 int				save_img(t_data *data);
 
 #endif
