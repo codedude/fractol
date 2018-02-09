@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/08 13:45:36 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/09 10:50:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ void			zoom(t_env *env, int zoom, int x, int y);
 int				draw_julia(void *data);
 int				draw_burn(void *data);
 int				draw_mandel(void *data);
+void			color_rot(t_color cs[16]);
+void			init_color(t_color cs[16]);
+void			init_color_r(t_color cs[16]);
 
 int				write_header(int fd, int size[2]);
 int				write_dibheader(int fd, int size[2]);

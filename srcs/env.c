@@ -6,11 +6,12 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 00:26:13 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/05 10:59:23 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/09 10:53:19 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <time.h>
 #include "libft.h"
 #include "ft_math.h"
 #include "ft_mlx.h"
@@ -30,6 +31,18 @@ void	color_rot(t_color cs[16])
 		i++;
 	}
 	cs[i] = tmp;
+}
+
+void	init_color_r(t_color cs[16])
+{
+	int	i;
+
+	i = 0;
+	while (i < 16)
+	{
+		cs[i] = ft_mlx_getcolor(rand() % 256, rand() % 256, rand() % 256);
+		i++;
+	}
 }
 
 void	init_color(t_color cs[16])
@@ -66,6 +79,7 @@ int		env_init(t_env *env, int fractal, int width, int height)
 	env->fractal = fractal;
 	env->width = width;
 	env->height = height;
+	srand(time(NULL));
 	init_color(env->cs);
 	if (fractal == FRACTAL_MANDEL)
 		mandel_init(&(env->area));
