@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:47:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/06 23:53:40 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/09 11:45:00 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			zoom(t_env *env, int zoom, int x, int y)
 	pos_y = pix_to_cplex_y(&(env->area), y);
 	if (zoom == 1)
 	{
-		delta = ZOOM * (env->area.x2 - env->area.x1);
+		delta = ((1. - ZOOM) * (env->area.x2 - env->area.x1)) / 2.;
 		env->area.x1 = pos_x - delta;
 		env->area.x2 = pos_x + delta;
 		env->area.y1 = pos_y - delta;
@@ -45,7 +45,7 @@ void			zoom(t_env *env, int zoom, int x, int y)
 	}
 	else
 	{
-		delta = (env->area.x2 - env->area.x1) / DEZOOM;
+		delta = ((env->area.x2 - env->area.x1) / (1. - ZOOM)) / 2.;
 		env->area.x1 = pos_x - delta;
 		env->area.x2 = pos_x + delta;
 		env->area.y1 = pos_y - delta;

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/09 10:50:46 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/09 11:44:40 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@
 # define THREADS		8
 # define TASKS			32
 
-# define ZOOM			0.25
-# define DEZOOM			0.75
+# define ZOOM			0.2
 # define MOVE			0.01
 # define FRACTAL_MANDEL	1
 # define FRACTAL_JULIA	2
