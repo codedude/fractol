@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 09:53:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/09 12:44:50 by vparis           ###   ########.fr       */
+/*   Updated: 2018/02/09 12:58:32 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	manage_key_up2(int keycode, t_env *env)
 		init_color_r(env->cs);
 	}
 }
+
 int			manage_key_up(int keycode, void *param)
 {
 	t_data	*data;
