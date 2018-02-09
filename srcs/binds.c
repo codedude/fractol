@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binds.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 09:53:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/02/06 23:46:11 by valentin         ###   ########.fr       */
+/*   Updated: 2018/02/09 12:44:50 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,30 @@ int			manage_key_down(int keycode, void *param)
 	return (1);
 }
 
+static void	manage_key_up2(int keycode, t_env *env)
+{
+	if (keycode == K_1)
+	{
+		env->refresh = 1;
+		init_color(env->cs);
+	}
+	else if (keycode == K_2)
+	{
+		env->refresh = 1;
+		init_color_r(env->cs);
+	}
+}
 int			manage_key_up(int keycode, void *param)
 {
 	t_data	*data;
 
-	(void)keycode;
 	data = (t_data *)param;
 	data->env.keydown = -1;
 	if (keycode == K_F)
 		data->env.show_fps = !data->env.show_fps;
-	if (keycode == K_S)
+	else if (keycode == K_S)
 		data->env.save_img = 1;
-	if (keycode == K_I)
+	else if (keycode == K_I)
 	{
 		if (data->env.fractal == FRACTAL_MANDEL)
 			mandel_init(&(data->env.area));
@@ -45,6 +57,8 @@ int			manage_key_up(int keycode, void *param)
 			burn_init(&(data->env.area));
 		data->env.refresh = 1;
 	}
+	else
+		manage_key_up2(keycode, &(data->env));
 	return (1);
 }
 
